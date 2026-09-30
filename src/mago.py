@@ -1,4 +1,8 @@
-from personagem import Personagem
+try:
+    from src.personagem import Personagem
+except ModuleNotFoundError:
+    from personagem import Personagem
+
 
 class Mago(Personagem):
 
@@ -13,14 +17,20 @@ class Mago(Personagem):
         self.mana = 100
 
     def atacar(self, alvo):
-        # TODO: implementar ataque normal
-        pass
+        dano = self.ataque
+        alvo.receber_dano(dano)
+        print(f"{self.nome} lançou um golpe simples em {alvo.nome} e causou {dano} de dano.")
+        return dano
 
     def usar_magia(self, alvo):
-        # TODO: implementar magia
+        custo = 20
 
-        if self.mana <= 0:
+        if self.mana < custo:
             print("O mago não possui mana suficiente.")
-            return
+            return 0
 
-        pass
+        self.mana -= custo
+        dano = self.ataque + 20
+        alvo.receber_dano(dano)
+        print(f"{self.nome} usou magia em {alvo.nome} e causou {dano} de dano.")
+        return dano

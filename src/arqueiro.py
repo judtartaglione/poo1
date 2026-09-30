@@ -4,18 +4,18 @@ except ModuleNotFoundError:
     from personagem import Personagem
 
 
-class Guerreiro(Personagem):
+class Arqueiro(Personagem):
 
     def __init__(self, nome):
         super().__init__(
             nome=nome,
-            vida=120,
-            ataque=20,
-            defesa=15
+            vida=100,
+            ataque=18,
+            defesa=10
         )
 
     def atacar(self, alvo):
         dano = self.ataque
         alvo.receber_dano(dano)
-        print(f"{self.nome} atacou {alvo.nome} e causou {dano} de dano.")
+        print(f"{self.nome} atirou uma flecha em {alvo.nome} e causou {dano} de dano.")
         return dano
